@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>SPECTER-ALLIANCE</title>
+  <style>
+    /* Genel ayarlar */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      background-color: #001100;
+      font-family: 'Courier New', monospace;
+      color: #00ff00;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      user-select: none;
+      position: relative;
+    }
+    /* Matrix efekt canvas */
+    #matrix {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      background: black;
+    }
+    /* Ana kutu */
+    .container {
+      max-width: 900px;
+      width: 100%;
+      background: rgba(0,30,0,0.95);
+      border: 2px solid #00ff00;
+      border-radius: 15px;
+      padding: 60px 70px;
+      text-align: center;
+      box-shadow: 0 0 30px #00ff00, inset 0 0 20px #007700;
+      position: relative;
+      z-index: 1;
+    }
+    /* Başlık */
+    h1 {
+      font-size: 60px;
+      font-weight: 900;
+      text-shadow:
+        0 0 12px #00ff00,
+        0 0 24px #00ff00,
+        0 0 36px #00ff00;
+      margin-bottom: 60px;
+      letter-spacing: 3px;
+      user-select: none;
+      cursor: default;
+    }
+    /* Linkler kutusu */
+    nav.links {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      font-size: 28px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    nav.links a {
+      color: #00ff00;
+      text-decoration: none;
+      border: 3px solid #00ff00;
+      padding: 18px 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #00ff00;
+      font-weight: 900;
+      transition: all 0.35s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background-color: rgba(0, 50, 0, 0.2);
+      letter-spacing: 1.5px;
+      user-select: none;
+    }
+    nav.links a:hover {
+      background-color: #00ff00;
+      color: #001100;
+      box-shadow: 0 0 30px #00ff00, 0 0 10px #00cc00 inset;
+      transform: scale(1.08);
+      z-index: 10;
+    }
+    /* Animasyonlu kutu hareketi */
+    .container:hover {
+      animation: floatMove 6s ease-in-out infinite alternate;
+    }
+    @keyframes floatMove {
+      0% {transform: translateX(0);}
+      25% {transform: translateX(15px);}
+      50% {transform: translateX(-15px);}
+      75% {transform: translateX(10px);}
+      100% {transform: translateX(0);}
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrix"></canvas>
+  <div class="container">
+    <h1>SPECTER-ALLIANCE</h1>
+    <nav class="links" aria-label="Sosyal ve İletişim Linkleri">
+      <a href="https://www.instagram.com/siber_aura/profilecard/?igsh=MWVnbnl0bmg0NzN0YQ==" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
+      <a href="https://t.me/specteralliance" target="_blank" rel="noopener noreferrer">TELEGRAM</a>
+    </nav>
+  </div>
+  <script>
+    // Matrix efekt canvas script
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
+    const fontSize = 18;
+    const columns = canvas.width / fontSize;
+
+    const drops = new Array(Math.floor(columns)).fill(1);
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#00ff00';
+      ctx.font = fontSize + 'px Courier New';
+
+      for(let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 40);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+  </script>
+</body>
+</html>
