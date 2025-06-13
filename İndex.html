@@ -3,653 +3,498 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Etik Hacker Grubu | SPECTER(:AdMiN</title>
+  <title>Etik Hacker Grubu - SPECTER(:AdMiN</title>
   <style>
-    /* Genel Reset ve temel stiller */
-    * {
-      box-sizing: border-box;
-      margin: 0; padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      transition: background-color 0.3s, color 0.3s;
-    }
+    /* Temel koyu tema stili */
     body {
-      background: #121212;
+      background-color: #121212;
       color: #eee;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 0 15px 50px;
-      overflow-x: hidden;
-    }
-    a {
-      color: #81d4fa;
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-    a:hover {
-      color: #29b6f6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0; padding: 0;
     }
     header {
-      width: 100%;
-      max-width: 1000px;
-      padding: 20px 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #444;
-      position: sticky;
-      top: 0;
-      background-color: #121212cc;
-      backdrop-filter: blur(6px);
-      z-index: 100;
-    }
-    header h1 {
-      font-weight: 700;
-      font-size: 1.8rem;
-      color: #29b6f6;
-      letter-spacing: 2px;
-    }
-    nav button {
-      background: #29b6f6;
-      border: none;
-      color: #121212;
-      padding: 8px 15px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-weight: 600;
-      box-shadow: 0 4px 6px rgba(41,182,246,0.4);
-      transition: background-color 0.3s ease;
-    }
-    nav button:hover {
-      background-color: #0288d1;
-      box-shadow: 0 6px 12px rgba(2,136,209,0.6);
-    }
-    main {
-      max-width: 1000px;
-      width: 100%;
-      margin-top: 20px;
-    }
-    /* Canlı saat & tarih */
-    #clock {
+      background: #222;
+      padding: 20px;
       text-align: center;
-      font-size: 1.2rem;
-      margin-bottom: 25px;
-      color: #90caf9;
-      font-weight: 600;
-      letter-spacing: 1.2px;
+      font-size: 2em;
+      font-weight: bold;
+      letter-spacing: 3px;
+      color: #4caf50;
     }
-    /* Ürünler bölümü */
-    #products {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 18px;
+    #content {
+      max-width: 960px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+    /* Ürün kartları */
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
       margin-bottom: 40px;
     }
     .product-card {
       background: #1e1e1e;
       border-radius: 12px;
-      padding: 18px 20px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.7);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 0 15px #4caf50;
+      width: 220px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s ease;
+      cursor: pointer;
     }
     .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 24px rgba(41,182,246,0.8);
+      transform: scale(1.05);
+      box-shadow: 0 0 25px #81c784;
     }
     .product-icon {
-      font-size: 3rem;
-      margin-bottom: 12px;
-      color: #29b6f6;
+      font-size: 48px;
+      margin-bottom: 15px;
+      color: #4caf50;
     }
     .product-title {
-      font-weight: 700;
-      font-size: 1.2rem;
-      margin-bottom: 8px;
-      color: #81d4fa;
-      letter-spacing: 0.5px;
+      font-size: 1.3em;
+      margin-bottom: 10px;
+      font-weight: 600;
     }
     .product-desc {
-      font-size: 0.9rem;
+      font-size: 0.9em;
       color: #ccc;
-      margin-bottom: 12px;
-      min-height: 50px;
-    }
-    .product-price {
-      font-weight: 700;
-      color: #4caf50;
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-    }
-    .product-note {
-      font-size: 0.75rem;
-      color: #9e9e9e;
     }
 
-    /* Giriş & Kayıt */
+    /* Giriş/Kayıt bölümü */
     #auth-section {
-      background: #1f1f1f;
-      padding: 25px 30px;
-      border-radius: 14px;
+      background: #1e1e1e;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #4caf50;
       margin-bottom: 40px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
-    }
-    #auth-section h2 {
-      color: #29b6f6;
-      margin-bottom: 15px;
-      font-weight: 700;
-      font-size: 1.4rem;
-      letter-spacing: 1px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
       text-align: center;
     }
-    #auth-form {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      max-width: 320px;
-      margin: 0 auto;
+    #auth-section h2 {
+      margin-bottom: 15px;
+      color: #4caf50;
     }
-    #auth-form input {
-      padding: 10px 12px;
+    #auth-section input {
+      width: 90%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
       border-radius: 8px;
-      border: none;
-      background: #2a2a2a;
+      font-size: 1em;
+      background: #121212;
       color: #eee;
-      font-size: 1rem;
-      transition: background-color 0.3s ease;
-    }
-    #auth-form input:focus {
       outline: none;
-      background-color: #3949ab;
     }
-    #auth-form button {
-      margin-top: 8px;
+    #auth-section button {
+      width: 95%;
       padding: 12px;
-      border-radius: 20px;
+      background: #4caf50;
       border: none;
-      background: #29b6f6;
+      border-radius: 8px;
+      font-size: 1.1em;
       color: #121212;
-      font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 6px 12px rgba(41,182,246,0.7);
-      transition: background-color 0.3s ease;
+      margin-top: 10px;
+      transition: background 0.3s ease;
     }
-    #auth-form button:hover {
-      background-color: #0288d1;
-      box-shadow: 0 8px 16px rgba(2,136,209,0.8);
+    #auth-section button:hover {
+      background: #81c784;
+    }
+    #auth-toggle {
+      margin-top: 12px;
+      color: #81c784;
+      cursor: pointer;
+      user-select: none;
     }
     #auth-message {
       margin-top: 10px;
-      text-align: center;
-      font-weight: 600;
       min-height: 24px;
-      user-select: none;
+      font-weight: 600;
+    }
+    #user-info {
+      margin-top: 15px;
+      color: #a5d6a7;
+      display: none;
+    }
+    #logout-btn {
+      margin-top: 12px;
+      padding: 8px 20px;
+      background: #f44336;
+      border: none;
+      border-radius: 8px;
+      color: #fff;
+      cursor: pointer;
+    }
+    #logout-btn:hover {
+      background: #ef5350;
     }
 
     /* Sipariş Formu */
     #order-section {
-      margin-bottom: 40px;
+      max-width: 640px;
+      margin: 0 auto 60px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 15px #4caf50;
+    }
+    #order-section h2 {
       text-align: center;
+      margin: 20px 0;
+      color: #4caf50;
     }
     #order-section iframe {
-      border: none;
-      border-radius: 10px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
       width: 100%;
-      max-width: 700px;
-      height: 600px;
-    }
-
-    /* Yapay Zeka Bölümü */
-    #ai-section {
-      background: #1e1e1e;
-      padding: 25px 30px;
-      border-radius: 14px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.8);
-      max-width: 700px;
-      margin: 0 auto 50px;
-    }
-    #ai-section h2 {
-      color: #29b6f6;
-      margin-bottom: 15px;
-      font-weight: 700;
-      font-size: 1.4rem;
-      text-align: center;
-    }
-    #ai-section textarea {
-      width: 100%;
-      height: 120px;
-      border-radius: 10px;
+      height: 650px;
       border: none;
-      padding: 12px;
-      font-size: 1rem;
-      resize: none;
-      background: #292929;
-      color: #eee;
-      margin-bottom: 15px;
-    }
-    #ai-section button {
       display: block;
-      margin: 0 auto 20px;
-      padding: 12px 25px;
-      border-radius: 20px;
-      border: none;
-      background: #29b6f6;
-      color: #121212;
-      font-weight: 700;
-      cursor: pointer;
-      box-shadow: 0 6px 12px rgba(41,182,246,0.7);
-      transition: background-color 0.3s ease;
-    }
-    #ai-section button:hover {
-      background-color: #0288d1;
-      box-shadow: 0 8px 16px rgba(2,136,209,0.8);
-    }
-    #ai-response {
-      background: #222;
-      padding: 15px;
-      border-radius: 10px;
-      min-height: 80px;
-      color: #a5d6a7;
-      white-space: pre-wrap;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1rem;
-      box-shadow: inset 0 0 8px #388e3c;
     }
 
-    /* Ürün filtreleme */
-    #filter-section {
-      max-width: 1000px;
-      margin: 0 auto 30px;
-      text-align: center;
-    }
-    #filter-section label {
-      color: #81d4fa;
-      font-weight: 600;
-      margin-right: 8px;
-    }
-    #filter-select {
-      padding: 8px 12px;
-      border-radius: 10px;
-      border: none;
-      background: #2a2a2a;
-      color: #eee;
-      font-weight: 600;
-      cursor: pointer;
-      min-width: 60px;
-      text-align: center;
-    }
-
-    /* Mini oyun */
-    #game-section {
-      background: #222;
-      max-width: 700px;
-      margin: 0 auto 50px;
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.7);
-    }
-    #game-section h2 {
-      color: #29b6f6;
-      text-align: center;
-      margin-bottom: 15px;
-      font-weight: 700;
-    }
-    #game-container {
-      display: flex;
-      justify-content: center;
-      margin-bottom: 15px;
-    }
-    #target {
-      width: 80px;
-      height: 80px;
-      background: #4caf50;
-      border-radius: 50%;
-      cursor: pointer;
+    /* Chatbot bölümü */
+    #chatbot {
+      max-width: 640px;
+      margin: 0 auto 40px;
+      background: #1e1e1e;
+      border-radius: 12px;
       box-shadow: 0 0 15px #4caf50;
-      user-select: none;
+      padding: 15px;
+    }
+    #chatbot h2 {
+      text-align: center;
+      color: #4caf50;
+      margin-bottom: 15px;
+    }
+    #chatlog {
+      background: #121212;
+      height: 250px;
+      overflow-y: auto;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.9em;
+      color: #eee;
+      margin-bottom: 10px;
+      border: 1px solid #4caf50;
+    }
+    #chatlog div.user {
+      text-align: right;
+      margin-bottom: 8px;
+      color: #81c784;
+    }
+    #chatlog div.bot {
+      text-align: left;
+      margin-bottom: 8px;
+      color: #aed581;
+    }
+    #chat-input {
+      width: calc(100% - 90px);
+      padding: 10px;
+      border-radius: 8px 0 0 8px;
+      border: none;
+      font-size: 1em;
+      outline: none;
+      background: #121212;
+      color: #eee;
+      border: 1px solid #4caf50;
+      border-right: none;
+    }
+    #chat-send {
+      width: 80px;
+      padding: 10px;
+      border: none;
+      background: #4caf50;
+      color: #121212;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 0 8px 8px 0;
       transition: background 0.3s ease;
     }
-    #target:hover {
+    #chat-send:hover {
       background: #81c784;
-      box-shadow: 0 0 25px #81c784;
     }
-    #score {
-      text-align: center;
-      color: #a5d6a7;
-      font-weight: 700;
-      font-size: 1.2rem;
-      user-select: none;
-    }
-    #game-message {
-      color: #ffb74d;
-      text-align: center;
-      margin-top: 10px;
-      font-weight: 600;
-      user-select: none;
-    }
-
-    /* Scroll animasyon */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Karanlık mod toggle */
-    #dark-mode-toggle {
-      position: fixed;
-      bottom: 25px;
-      right
-: 25px;
-      background: #29b6f6;
-      border: none;
-      color: #121212;
-      padding: 12px 18px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: 700;
-      box-shadow: 0 6px 12px rgba(41,182,246,0.7);
-      z-index: 150;
-      transition: background-color 0.3s ease;
-    }
-    #dark-mode-toggle:hover {
-      background-color: #0288d1;
-      box-shadow: 0 8px 16px rgba(2,136,209,0.8);
-    }
-
-    /* Karanlık mod stilleri */
-    body.dark {
-      background-color: #f5f5f5;
-      color: #121212;
-    }
-    body.dark header {
-      background-color: #f5f5f5cc;
-      border-bottom: 2px solid #bbb;
-    }
-    body.dark a {
-      color: #1565c0;
-    }
-    body.dark a:hover {
-      color: #0d47a1;
-    }
-    body.dark #auth-section,
-    body.dark #ai-section,
-    body.dark #game-section {
-      background: #ddd;
-      color: #121212;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    }
-    body.dark #auth-form input,
-    body.dark #filter-select,
-    body.dark #ai-section textarea {
-      background: #eee;
-      color: #121212;
-    }
-    body.dark .product-card {
-      background: #fafafa;
-      color: #121212;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-    }
-    body.dark #order-section iframe {
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
-    body.dark #dark-mode-toggle {
-      background: #1565c0;
-      color: #f5f5f5;
-    }
-    body.dark #dark-mode-toggle:hover {
-      background-color: #0d47a1;
+    @media (max-width: 700px) {
+      .products {
+        flex-direction: column;
+        align-items: center;
+      }
+      .product-card {
+        width: 90%;
+      }
+      #order-section iframe {
+        height: 550px;
+      }
+      #chatbot {
+        width: 95%;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>SPECTER(:AdMiN</h1>
-    <nav>
-      <button id="dark-mode-toggle">Karanlık Mod</button>
-    </nav>
-  </header>
 
-  <main>
-    <div id="clock" class="fade-in"></div>
+<header>Etik Hacker Grubu - SPECTER(:AdMiN)</header>
 
-    <section id="filter-section" class="fade-in">
-      <label for="filter-select">Ürünleri Fiyata Göre Filtrele:</label>
-      <select id="filter-select">
-        <option value="all">Hepsi</option>
-        <option value="100">100 TL'ye Kadar</option>
-        <option value="200">200 TL'ye Kadar</option>
-        <option value="400">400 TL'ye Kadar</option>
-        <option value="750">750 TL'ye Kadar</option>
-      </select>
-    </section>
+<div id="content">
 
-    <section id="products" class="fade-in" aria-label="Ürünler listesi">
-      <!-- Ürünler JS ile yüklenecek -->
-    </section>
+  <!-- Ürünler -->
+  <section class="products">
+    <div class="product-card">
+      <div class="product-icon">🔐</div>
+      <div class="product-title">Bruteforce</div>
+      <div class="product-desc">Güvenlik testleri için hızlı ve etkili.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🌐</div>
+      <div class="product-title">DDoS Tool</div>
+      <div class="product-desc">Sistem dayanıklılığını test etmek için.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">📜</div>
+      <div class="product-title">Script Yazılımı</div>
+      <div class="product-desc">Özelleştirilmiş otomasyon çözümleri.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">📱</div>
+      <div class="product-title">SMS Bomber</div>
+      <div class="product-desc">Test amaçlı SMS gönderme aracı.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">🎮</div>
+      <div class="product-title">Discord Tool</div>
+      <div class="product-desc">Sunucu yönetim ve moderasyon araçları.</div>
+    </div>
+    <div class="product-card">
+      <div class="product-icon">📧</div>
+      <div class="product-title">Fake E-Posta</div>
+      <div class="product-desc">Gizlilik için geçici e-posta oluşturma.</div>
+    </div>
+  </section>
 
-    <section id="auth-section" class="fade-in" aria-label="Giriş ve Kayıt">
-      <h2>Kullanıcı Girişi / Kayıt</h2>
-      <form id="auth-form" autocomplete="off">
-        <input type="text" id="username" placeholder="Kullanıcı Adı" required />
-        <input type="password" id="password" placeholder="Şifre" required />
-        <button type="submit" id="auth-submit">Giriş Yap / Kayıt Ol</button>
-      </form>
-      <div id="auth-message" role="alert" aria-live="polite"></div>
-    </section>
+  <!-- Giriş/Kayıt -->
+  <section id="auth-section">
+    <h2 id="auth-title">Giriş Yap</h2>
+    <input type="email" id="email" placeholder="E-posta" required />
+    <input type="password" id="password" placeholder="Şifre" required />
+    <button id="auth-btn">Giriş Yap</button>
+    <p id="auth-toggle">Kayıt olmak için tıklayın</p>
+    <p id="auth-message"></p>
+    <div id="user-info">
+      Giriş yapan kullanıcı: <span id="user-email"></span>
+      <br />
+      <button id="logout-btn">Çıkış Yap</button>
+    </div>
+  </section>
 
-    <section id="order-section" class="fade-in" aria-label="Sipariş Formu">
-      <h2>Sipariş Ver</h2>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScvhgq7rx03xSzoVX8hqbhyIqA8hVoQ3OWQv0I6QNkqw2C-CQ/viewform?embedded=true" width="640" height="600" frameborder="0" marginheight="0" marginwidth="0">Yükleniyor…</iframe>
-    </section>
+  <!-- Sipariş Formu -->
+  <section id="order-section">
+    <h2>Sipariş Formu</h2>
+    <iframe
+      src="https://docs.google.com/forms/d/e/1FAIpQLSem4UJLI_E3W44fhB0d26HdJqMrkDvCAixvvnaQKugzkRmeSg/viewform?embedded=true"
+      frameborder="0"
+      marginheight="0"
+      marginwidth="0"
+      title="Sipariş Formu"
+    >
+      Yükleniyor…
+    </iframe>
+  </section>
 
-    <section id="ai-section" class="fade-in" aria-label="Yapay Zeka Chat">
-      <h2>Yapay Zeka ile Konuş</h2>
-      <textarea id="ai-input" placeholder="Sorunuzu buraya yazın..."></textarea>
-      <button id="ai-submit">Gönder</button>
-      <pre id="ai-response" aria-live="polite"></pre>
-    </section>
+  <!-- Yapay Zeka Chatbot -->
+  <section id="chatbot">
+    <h2>Yapay Zeka Destekli Bilgi Asistanı</h2>
+    <div id="chatlog"></div>
+    <input type="text" id="chat-input" placeholder="Sorunuzu buraya yazın..." />
+    <button id="chat-send">Gönder</button>
+  </section>
 
-    <section id="game-section" class="fade-in" aria-label="Mini Oyun">
-      <h2>Hedefi Tıklama Oyunu</h2>
-      <div id="game-container">
-        <div id="target" tabindex="0" role="button" aria-label="Hedef"></div>
-      </div>
-      <div id="score">Puan: 0</div>
-      <div id="game-message" aria-live="polite"></div>
-    </section>
-  </main>
+</div>
 
-  <script>
-    // --- Saat ve Tarih ---
-    function updateClock() {
-      const clock = document.getElementById('clock');
-      const now = new Date();
-      const days = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
-      const day = days[now.getDay()];
-      const date = now.toLocaleDateString('tr-TR');
-      const time = now.toLocaleTimeString('tr-TR');
-      clock.textContent = `${day}, ${date} - ${time}`;
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-
+<!-- Firebase SDK devamı ve script -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+
+<script>
+  // Firebase yapılandırması
+  const firebaseConfig = {
+    apiKey: "AIzaSyDDgoJW-l4_BgdtAKbHKJGQRNIkY98mlZI",
+    authDomain: "alim-satim-sitem.firebaseapp.com",
+    projectId: "alim-satim-sitem",
+    storageBucket: "alim-satim-sitem.firebasestorage.app",
+    messagingSenderId: "1036171043700",
+    appId: "1:1036171043700:web:b6e5b863d0125206178221",
+    measurementId: "G-RV797CV5JG"
+  };
+
+  // Firebase başlat
+  const app = firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  // Elementleri seç
+  const authTitle = document.getElementById('auth-title');
+  const emailInput = document.getElementById('email');
+  const passwordInput = document.getElementById('password');
+  const authBtn = document.getElementById('auth-btn');
+  const authToggle = document.getElementById('auth-toggle');
+  const authMessage = document.getElementById('auth-message');
+  const userInfo = document.getElementById('user-info');
+  const userEmailDisplay = document.getElementById('user-email');
+  const logoutBtn = document.getElementById('logout-btn');
+
+  // Giriş/Kayıt modu: true = giriş, false = kayıt
+  let isLoginMode = true;
+
+  // Mod değiştirici
+  authToggle.addEventListener('click', () => {
+    isLoginMode = !isLoginMode;
+    if(isLoginMode) {
+      authTitle.textContent = 'Giriş Yap';
+      authBtn.textContent = 'Giriş Yap';
+      authToggle.textContent = 'Kayıt olmak için tıklayın';
+      authMessage.textContent = '';
+    } else {
+      authTitle.textContent = 'Kayıt Ol';
+      authBtn.textContent = 'Kayıt Ol';
+      authToggle.textContent = 'Zaten hesabınız var mı? Giriş yapın';
+      authMessage.textContent = '';
     }
-    setInterval(updateClock, 1000);
-    updateClock();
+  });
 
-    // --- Ürünler verisi ---
-    const productsData = [
-      { icon: '🕶️', title: 'Bruteforce Saldırısı', price: 100, desc: '%60 doğruluk oranı', note: 'Etik kapsamda deneyiniz' },
-      { icon: '🚇', title: 'DDoS Saldırısı', price: 400, desc: '', note: 'Etik kapsamda deneyiniz' },
-      { icon: '💻', title: 'Scriptler', price: 150, desc: 'İstediğiniz script yazılır', note: 'DM ile iletişim' },
-      { icon: '🗂️', title: 'Datalar', price: 750, desc: '(Akbank, predunyam, pubg, valorant hesapları)', note: 'Çok iyi datalar fiyatlar hakkını verir' },
-      { icon: '✉️', title: 'SMS Bomber', price: 200, desc: 'Hasımlarınıza korkutmak için', note: 'DM ile iletişim' },
-      { icon: '🖥️', title: 'Discord Tool', price: 200, desc: 'Discord hesap kapatma', note: '%70 doğruluk oranı' },
-      { icon: '📨', title: 'Fake Eposta', price: 100, desc: 'Tüm platformlarda çalışır', note: '' },
-      { icon: '🖲️', title: 'Instagram Tool', price: 200, desc: 'Hesap kapatma', note: '%70 doğruluk oranı' },
-      { icon: '🖲️', title: 'TikTok Tool', price: 200, desc: 'Hesap kapatma', note: '%60 doğruluk oranı' },
-    ];
+  // Buton tıklaması
+  authBtn.addEventListener('click', () => {
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+    authMessage.style.color = 'red';
 
-    // --- Ürünleri göster ---
-    const productsContainer = document.getElementById('products');
-    const filterSelect = document.getElementById('filter-select');
-
-    function renderProducts(filterPrice = 'all') {
-      productsContainer.innerHTML = '';
-      let filtered = productsData;
-      if (filterPrice !== 'all') {
-        const maxPrice = parseInt(filterPrice);
-        filtered = productsData.filter(p => p.price <= maxPrice);
-      }
-      filtered.forEach(p => {
-        const card = document.createElement('article');
-        card.classList.add('product-card', 'fade-in');
-        card.innerHTML = `
-          <div class="product-icon">${p.icon}</div>
-          <div class="product-title">${p.title}</div>
-          <div class="product-desc">${p.desc}</div>
-          <div class="product-price">${p.price} TL</div>
-          <div class="product-note">${p.note}</div>
-        `;
-        productsContainer.appendChild(card);
-      });
-      fadeInElements();
+    if(!email || !password) {
+      authMessage.textContent = 'Lütfen e-posta ve şifre girin.';
+      return;
     }
-    filterSelect.addEventListener('change', () => {
-      renderProducts(filterSelect.value);
+
+    if(isLoginMode) {
+      // Giriş yap
+      auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          authMessage.style.color = 'lightgreen';
+          authMessage.textContent = 'Başarıyla giriş yapıldı!';
+          showUser(userCredential.user);
+        })
+        .catch(error => {
+          authMessage.textContent = `Hata: ${error.message}`;
+        });
+    } else {
+      // Kayıt ol
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(userCredential => {
+          authMessage.style.color = 'lightgreen';
+          authMessage.textContent = 'Başarıyla kayıt olundu!';
+          showUser(userCredential.user);
+        })
+        .catch(error => {
+          authMessage.textContent = `Hata: ${error.message}`;
+        });
+    }
+  });
+
+  // Kullanıcı bilgisi göster
+  function showUser(user) {
+    if(user) {
+      userInfo.style.display = 'block';
+      userEmailDisplay.textContent = user.email;
+      // Giriş formunu gizle
+      emailInput.style.display = 'none';
+      passwordInput.style.display = 'none';
+      authBtn.style.display = 'none';
+      authToggle.style.display = 'none';
+      authTitle.textContent = 'Hoşgeldiniz!';
+      authMessage.textContent = '';
+    } else {
+      userInfo.style.display = 'none';
+      emailInput.style.display = 'block';
+      passwordInput.style.display = 'block';
+      authBtn.style.display = 'block';
+      authToggle.style.display = 'block';
+      authTitle.textContent = isLoginMode ? 'Giriş Yap' : 'Kayıt Ol';
+    }
+  }
+
+  // Çıkış yap
+  logoutBtn.addEventListener('click', () => {
+    auth.signOut().then(() => {
+      authMessage.style.color = 'lightgreen';
+      authMessage.textContent = 'Başarıyla çıkış yapıldı.';
+      showUser(null);
     });
-    renderProducts();
+  });
 
-    // --- Giriş ve Kayıt ---
-    const authForm = document.getElementById('auth-form');
-    const authMessage = document.getElementById('auth-message');
-
-    function getUsers() {
-      return JSON.parse(localStorage.getItem('users') || '{}');
+  // Sayfa yüklendiğinde giriş yapmış kullanıcı var mı kontrol et
+  auth.onAuthStateChanged(user => {
+    if(user) {
+      showUser(user);
+    } else {
+      showUser(null);
     }
-    function saveUsers(users) {
-      localStorage.setItem('users', JSON.stringify(users));
+  });
+
+
+  // -- Basit Yapay Zeka Chatbot (API'siz, sabit cevaplar) --
+  const chatlog = document.getElementById('chatlog');
+  const chatInput = document.getElementById('chat-input');
+  const chatSend = document.getElementById('chat-send');
+
+  // Önceden tanımlı cevaplar
+  const botAnswers = {
+    'merhaba': 'Merhaba! Size nasıl yardımcı olabilirim?',
+    'naber': 'İyiyim, teşekkür ederim! Siz nasılsınız?',
+    'kim yaptın': 'Bu site SPECTER(:AdMiN tarafından oluşturuldu.',
+    'yapımcı': 'Yapımcım SPECTER(:AdMiN.',
+    'site hakkında': 'Bu site etik hacker grubunun ürün ve hizmetlerini tanıtmaktadır.',
+    'sipariş nasıl verilir': 'Sipariş formunu doldurarak bize ulaşabilirsiniz.',
+    'yardım': 'Sorularınızı buraya yazabilirsiniz, elimden geldiğince yardımcı olurum.',
+    'teşekkürler': 'Rica ederim, her zaman buradayım!',
+    'hoşçakal': 'Görüşmek üzere! İyi günler!'
+  };
+
+  function addMessage(text, sender) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    div.className = sender;
+    chatlog.appendChild(div);
+    chatlog.scrollTop = chatlog.scrollHeight;
+  }
+
+  function botResponse(input) {
+    input = input.toLowerCase();
+    for(const key in botAnswers) {
+      if(input.includes(key)) {
+        return botAnswers[key];
+      }
     }
-    authForm.addEventListener('submit', e => {
-      e.prevent
-Default();
-      const username = authForm.username.value.trim();
-      const password = authForm.password.value.trim();
-      if (username.length < 3 || password.length < 4) {
-        authMessage.style.color = 'tomato';
-        authMessage.textContent = 'Kullanıcı adı en az 3, şifre en az 4 karakter olmalı.';
-        return;
-      }
-      const users = getUsers();
+    return "Üzgünüm, bunu anlayamadım. Lütfen farklı bir şey deneyin.";
+  }
 
-      if (users[username]) {
-        // Kullanıcı varsa giriş denemesi
-        if (users[username] === password) {
-          authMessage.style.color = '#4caf50';
-          authMessage.textContent = `Hoşgeldin, ${username}! Giriş başarılı.`;
-        } else {
-          authMessage.style.color = 'tomato';
-          authMessage.textContent = 'Şifre yanlış!';
-        }
-      } else {
-        // Kayıt işlemi
-        users[username] = password;
-        saveUsers(users);
-        authMessage.style.color = '#4caf50';
-        authMessage.textContent = `Kayıt tamamlandı, hoşgeldin ${username}!`;
-      }
-      authForm.reset();
-    });
+  chatSend.addEventListener('click', () => {
+    const userText = chatInput.value.trim();
+    if(!userText) return;
 
-    // --- Yapay Zeka Simülasyonu ---
-    const aiInput = document.getElementById('ai-input');
-    const aiSubmit = document.getElementById('ai-submit');
-    const aiResponse = document.getElementById('ai-response');
+    addMessage(userText, 'user');
+    chatInput.value = '';
 
-    aiSubmit.addEventListener('click', () => {
-      const question = aiInput.value.trim();
-      if (!question) {
-        aiResponse.textContent = 'Lütfen bir soru yazın.';
-        return;
-      }
-      aiResponse.textContent = 'Yanıt hazırlanıyor...';
-      setTimeout(() => {
-        // Basit demo cevaplar, gelişmiş yapay zeka API entegrasyonu yapılabilir.
-        let answer = 'Üzgünüm, bunu anlayamadım.';
-        if (/merhaba|selam/i.test(question)) {
-          answer = 'Merhaba! Size nasıl yardımcı olabilirim?';
-        } else if (/nasılsın/i.test(question)) {
-          answer = 'İyiyim, teşekkür ederim! Siz nasılsınız?';
-        } else if (/etik hacker/i.test(question)) {
-          answer = 'Etik hacker, sistemlerin güvenliğini test eden ve açıkları bulan kişidir.';
-        } else if (/yardım/i.test(question)) {
-          answer = 'Tabii ki, ne hakkında yardım istiyorsunuz?';
-        }
-        aiResponse.textContent = answer;
-      }, 1000);
-    });
+    setTimeout(() => {
+      const reply = botResponse(userText);
+      addMessage(reply, 'bot');
+    }, 600);
+  });
 
-    // --- Mini Oyun ---
-    const target = document.getElementById('target');
-    const scoreDisplay = document.getElementById('score');
-    const gameMessage = document.getElementById('game-message');
-
-    let score = 0;
-    let gameActive = true;
-
-    function moveTarget() {
-      const container = document.getElementById('game-container');
-      const maxX = container.clientWidth - target.clientWidth;
-      const maxY = container.clientHeight - target.clientHeight;
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
-      target.style.transform = `translate(${randomX}px, ${randomY}px)`;
+  chatInput.addEventListener('keydown', e => {
+    if(e.key === 'Enter') {
+      chatSend.click();
     }
+  });
+</script>
 
-    target.addEventListener('click', () => {
-      if (!gameActive) return;
-      score++;
-      scoreDisplay.textContent = `Puan: ${score}`;
-      gameMessage.textContent = '';
-      moveTarget();
-      if (score >= 20) {
-        gameActive = false;
-        gameMessage.textContent = 'Tebrikler! Maksimum puana ulaştınız!';
-      }
-    });
-
-    // Başlangıçta hedefi rastgele konumlandır
-    moveTarget();
-
-    // --- Karanlık Mod Toggle ---
-    const darkModeBtn = document.getElementById('dark-mode-toggle');
-    darkModeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      if (document.body.classList.contains('dark')) {
-        darkModeBtn.textContent = 'Açık Mod';
-      } else {
-        darkModeBtn.textContent = 'Karanlık Mod';
-      }
-    });
-
-    // --- Scroll Animasyonları ---
-    function fadeInElements() {
-      const fadeElems = document.querySelectorAll('.fade-in');
-      fadeElems.forEach(elem => {
-        const rect = elem.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          elem.classList.add('visible');
-        }
-      });
-    }
-    window.addEventListener('scroll', fadeInElements);
-    window.addEventListener('load', fadeInElements);
-
-  </script>
 </body>
 </html>
