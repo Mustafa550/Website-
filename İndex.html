@@ -1,153 +1,254 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <title>SPECTER-ALLIANCE</title>
-  <style>
-    /* Genel ayarlar */
-    * {
-      margin: 0; padding: 0; box-sizing: border-box;
-    }
-    html, body {
-      height: 100%;
-      background-color: #001100;
-      font-family: 'Courier New', monospace;
-      color: #00ff00;
-      overflow-x: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      user-select: none;
-      position: relative;
-    }
-    /* Matrix efekt canvas */
-    #matrix {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      background: black;
-    }
-    /* Ana kutu */
-    .container {
-      max-width: 900px;
-      width: 100%;
-      background: rgba(0,30,0,0.95);
-      border: 2px solid #00ff00;
-      border-radius: 15px;
-      padding: 60px 70px;
-      text-align: center;
-      box-shadow: 0 0 30px #00ff00, inset 0 0 20px #007700;
-      position: relative;
-      z-index: 1;
-    }
-    /* Başlık */
-    h1 {
-      font-size: 60px;
-      font-weight: 900;
-      text-shadow:
-        0 0 12px #00ff00,
-        0 0 24px #00ff00,
-        0 0 36px #00ff00;
-      margin-bottom: 60px;
-      letter-spacing: 3px;
-      user-select: none;
-      cursor: default;
-    }
-    /* Linkler kutusu */
-    nav.links {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      font-size: 28px;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-    nav.links a {
-      color: #00ff00;
-      text-decoration: none;
-      border: 3px solid #00ff00;
-      padding: 18px 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px #00ff00;
-      font-weight: 900;
-      transition: all 0.35s ease;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      background-color: rgba(0, 50, 0, 0.2);
-      letter-spacing: 1.5px;
-      user-select: none;
-    }
-    nav.links a:hover {
-      background-color: #00ff00;
-      color: #001100;
-      box-shadow: 0 0 30px #00ff00, 0 0 10px #00cc00 inset;
-      transform: scale(1.08);
-      z-index: 10;
-    }
-    /* Animasyonlu kutu hareketi */
-    .container:hover {
-      animation: floatMove 6s ease-in-out infinite alternate;
-    }
-    @keyframes floatMove {
-      0% {transform: translateX(0);}
-      25% {transform: translateX(15px);}
-      50% {transform: translateX(-15px);}
-      75% {transform: translateX(10px);}
-      100% {transform: translateX(0);}
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Etik Hacker Grubu | SPECTER</title>
+<style>
+  body {
+    background-color: #121212;
+    color: #eee;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0; padding: 0;
+  }
+  header {
+    background-color: #0f0f0f;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #00ff99;
+  }
+  header h1 {
+    margin: 0;
+    color: #00ff99;
+    font-weight: 900;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background-color: #171717;
+    padding: 15px 0;
+    border-bottom: 1px solid #00ff99;
+  }
+  nav a {
+    color: #00ff99;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+  main {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 20px;
+  }
+  /* Ürünler bölümü */
+  .products-section {
+    background: #1a1a1a;
+    color: #eee;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 255, 153, 0.2);
+  }
+  .products-section h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #00ff99;
+  }
+  .product-list {
+    list-style-type: none;
+    padding-left: 0;
+    font-size: 1.1em;
+  }
+  .product-list li {
+    margin: 12px 0;
+    padding-left: 25px;
+    position: relative;
+    line-height: 1.5em;
+  }
+  .product-list li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #00ff99;
+    font-weight: bold;
+  }
+  .note {
+    margin-top: 20px;
+    font-style: italic;
+    color: #aaa;
+    font-size: 0.9em;
+  }
+  /* Diğer bölümler */
+  footer {
+    background-color: #0f0f0f;
+    text-align: center;
+    padding: 20px;
+    color: #555;
+    font-size: 0.9em;
+    margin-top: 50px;
+    border-top: 1px solid #00ff99;
+  }
+  /* Buton ve form stilleri */
+  button, input, select, textarea {
+    font-family: inherit;
+    font-size: 1em;
+  }
+  /* Yapay zeka kutusu */
+  #ai-box {
+    background: #222;
+    color: #0f0;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 40px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    min-height: 120px;
+  }
+</style>
 </head>
 <body>
-  <canvas id="matrix"></canvas>
-  <div class="container">
-    <h1>SPECTER-ALLIANCE</h1>
-    <nav class="links" aria-label="Sosyal ve İletişim Linkleri">
-      <a href="https://www.instagram.com/siber_aura/profilecard/?igsh=MWVnbnl0bmg0NzN0YQ==" target="_blank" rel="noopener noreferrer">INSTAGRAM</a>
-      <a href="https://t.me/specteralliance" target="_blank" rel="noopener noreferrer">TELEGRAM</a>
-    </nav>
-  </div>
-  <script>
-    // Matrix efekt canvas script
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
+<header>
+  <h1>SPECTER - Etik Hacker Grubu</h1>
+</header>
+<nav>
+  <a href="#products">Ürünler</a>
+  <a href="#giris-kayit">Giriş/Kayıt</a>
+  <a href="#siparis">Sipariş</a>
+  <a href="#yapay-zeka">Yapay Zeka</a>
+</nav>
+<main>
+  <!-- Ürünler -->
+  <section id="products" class="products-section">
+    <h2>🕶️ Yazılım Hizmetleri</h2>
+    <p>Yazılıma dair pek çok işlem belirli ücret ile yapılabilir</p>
+    <ul class="product-list">
+      <li>🌐 Bruteforce saldırısı (100 TL) - %60 doğruluk oranı</li>
+      <li>🚇 DDoS saldırısı (400 TL) - Etik kapsamda deneyiniz</li>
+      <li>💻 Scriptler (150 TL) - İstediğiniz script yazılır dm</li>
+      <li>🗂️ Datalar (750 TL) - Akbank, predunyam, hesap.com.tr, pubg hesap, valorant hesapları</li>
+      <li>✉️ SMS bomber (200 TL) - Hasımlarınıza istediğiniz kişiye yapılır korkutulur dm</li>
+      <li>🖥️ Discord tool (200 TL) - Discord hesap kapatabiliriz hasımlarınızı korkutun dm</li>
+      <li>📨 Fake eposta (100 TL) - İstediğiniz tüm platformlarda çalışır</li>
+      <li>🖲️ Instagram tool (200 TL) - Hesap kapatılır %70 doğruluk oranı ile dm</li>
+      <li>🖲️ Tiktok tool (200 TL) - Tiktok hesap kapatılır %60 doğruluk oranı dm</li>
+    </ul>
+    <p class="note">📣 Yukarıda gördüğünüz gibi tüm işlemler gerçekleşir, almak isteyenler dm gelsin.<br/>
+    Seçtiğiniz işlemlere göre fiyatlar değişkenlik gösterebilir 😊</p>
+  </section>
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+  <!-- Giriş / Kayıt bölümü -->
+  <section id="giris-kayit" style="margin-top: 50px;">
+    <h2>Giriş / Kayıt</h2>
+    <form id="authForm">
+      <label for="email">E-posta:</label><br/>
+      <input type="email" id="email" required /><br/><br/>
+      <label for="password">Parola:</label><br/>
+      <input type="password" id="password" required minlength="6"/><br/><br/>
+      <button type="submit" id="btnLogin">Giriş Yap</button>
+      <button type="button" id="btnRegister">Kayıt Ol</button>
+    </form>
+    <p id="authMessage" style="color:#0f0;"></p>
+  </section>
 
-    const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+-=[]{}|;:,.<>?';
-    const fontSize = 18;
-    const columns = canvas.width / fontSize;
+  <!-- Sipariş Formu -->
+  <section id="siparis" style="margin-top: 50px;">
+    <h2>Sipariş Formu</h2>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSem4UJLI_E3W44fhB0d26HdJqMrkDvCAixvvnaQKugzkRmeSg/viewform?embedded=true" width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Yükleniyor…</iframe>
+  </section>
 
-    const drops = new Array(Math.floor(columns)).fill(1);
+  <!-- Yapay Zeka -->
+  <section id="yapay-zeka" style="margin-top: 50px;">
+    <h2>Yapay Zeka</h2>
+    <div id="ai-box">Merhaba! Ben SPECTER yapay zekasıyım. Site ve hizmetler hakkında bilgi almak için sorularını yazabilirsin.</div>
+    <input type="text" id="ai-input" placeholder="Bir soru yaz..." style="width: 100%; margin-top: 10px; padding: 8px; background:#000; color:#0f0; border: 1px solid #0f0; border-radius: 5px;" />
+    <button id="ai-send" style="margin-top: 10px; padding: 10px 20px; background: #00ff99; border:none; border-radius:5px; cursor:pointer;">Sor</button>
+  </section>
+</main>
+<footer>
+  &copy; 2025 SPECTER | Etik Hacker Grubu
+</footer>
 
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+<script>
+  // Basit Yapay Zeka simülasyonu (sabit cevaplar)
+  const aiBox = document.getElementById('ai-box');
+  const aiInput = document.getElementById('ai-input');
+  const aiSend = document.getElementById('ai-send');
 
-      ctx.fillStyle = '#00ff00';
-      ctx.font = fontSize + 'px Courier New';
+  aiSend.addEventListener('click', () => {
+    const question = aiInput.value.toLowerCase().trim();
+    if(!question) return;
 
-      for(let i = 0; i < drops.length; i++) {
-        const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+    let answer = "Üzgünüm, bunu anlayamadım. Lütfen farklı bir soru sor.";
 
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
+    if(question.includes("kim yaptı") || question.includes("yapan kim")) {
+      answer = "Bu site SPECTER(:AdMiN tarafından oluşturulmuştur.";
+    } else if(question.includes("ne yapar") || question.includes("neler yapar")) {
+      answer = "SPECTER etik hacker grubudur ve beyaz şapkalı güvenlik araştırmaları yapar.";
+    } else if(question.includes("sipariş") || question.includes("nasıl sipariş")) {
+      answer = "Sipariş formunu kullanarak istediğiniz hizmet için başvuru yapabilirsiniz.";
+    } else if(question.includes("yardım")) {
+      answer = "Yardım için iletişim kanallarımızdan bize ulaşabilirsiniz.";
     }
 
-    setInterval(draw, 40);
+    aiBox.textContent = answer;
+    aiInput.value = "";
+  });
 
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-  </script>
+  // Giriş Kayıt sistemi (yerel saklama ile basit demo)
+  const authForm = document.getElementById('authForm');
+  const btnLogin = document.getElementById('btnLogin');
+  const btnRegister = document.getElementById('btnRegister');
+  const authMessage = document.getElementById('authMessage');
+
+  btnRegister.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value.trim();
+    if(!email || !password) {
+      authMessage.style.color = 'red';
+      authMessage.textContent = "Lütfen e-posta ve parola girin.";
+      return;
+    }
+    if(password.length < 6){
+      authMessage.style.color = 'red';
+      authMessage.textContent = "Parola en az 6 karakter olmalı.";
+      return;
+    }
+    if(localStorage.getItem(email)) {
+      authMessage.style.color = 'red';
+      authMessage.textContent = "Bu e-posta zaten kayıtlı.";
+      return;
+    }
+    localStorage.setItem(email, password);
+    authMessage.style.color = '#0f0';
+    authMessage.textContent = "Kayıt başarılı, şimdi giriş yapabilirsiniz.";
+    authForm.reset();
+  });
+
+  btnLogin.addEventListener('click', (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const password = document.get
+password.value.trim();
+    if(!email || !password) {
+      authMessage.style.color = 'red';
+      authMessage.textContent = "Lütfen e-posta ve parola girin.";
+      return;
+    }
+    const storedPassword = localStorage.getItem(email);
+    if(storedPassword && storedPassword === password) {
+      authMessage.style.color = '#0f0';
+      authMessage.textContent = "Giriş başarılı, hoşgeldiniz!";
+      authForm.reset();
+      // Giriş başarılı olunca istediğin ek işlemleri buraya ekleyebilirsin.
+    } else {
+      authMessage.style.color = 'red';
+      authMessage.textContent = "E-posta veya parola yanlış.";
+    }
+  });
+</script>
 </body>
 </html>
