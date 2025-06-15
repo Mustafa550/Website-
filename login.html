@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Giriş / Kayıt Ol</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="auth-container">
+    <h2 id="formTitle">Giriş Yap</h2>
+    
+    <div id="loginForm">
+      <input type="text" id="loginUser" placeholder="Kullanıcı Adı">
+      <input type="password" id="loginPass" placeholder="Şifre">
+      <button onclick="login()">Giriş Yap</button>
+      <p class="switch" onclick="toggleForm()">Hesabın yok mu? Kayıt Ol</p>
+    </div>
+
+    <div id="registerForm" style="display:none;">
+      <input type="text" id="registerUser" placeholder="Kullanıcı Adı">
+      <input type="password" id="registerPass" placeholder="Şifre">
+      <button onclick="register()">Kayıt Ol</button>
+      <p class="switch" onclick="toggleForm()">Zaten hesabın var mı? Giriş Yap</p>
+    </div>
+
+    <p id="message"></p>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>
