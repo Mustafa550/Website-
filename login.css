@@ -1,0 +1,50 @@
+body {
+  background-color: #f5f6fa;
+  font-family: Arial, sans-serif;
+  padding: 40px;
+}
+
+.auth-container {
+  max-width: 400px;
+  margin: auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #27ae60;
+}
+
+.switch {
+  margin-top: 15px;
+  color: #2980b9;
+  cursor: pointer;
+}
+
+#message {
+  margin-top: 15px;
+  color: red;
+}
