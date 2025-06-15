@@ -1,0 +1,47 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f1f1f1;
+  margin: 0;
+  padding: 30px;
+}
+
+.admin-container {
+  max-width: 500px;
+  margin: auto;
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+input, textarea, button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button {
+  background-color: #0984e3;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #74b9ff;
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  background-color: #f7f7f7;
+  margin-bottom: 8px;
+  padding: 12px;
+  border-radius: 8px;
+}
