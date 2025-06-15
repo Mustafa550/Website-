@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Paneli | SpecterShop</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="admin-container">
+    <h1>🛠️ SpecterShop Admin Panel</h1>
+    
+    <div class="admin-login" id="adminLogin">
+      <input type="text" id="adminUser" placeholder="Kullanıcı Adı">
+      <input type="password" id="adminPass" placeholder="Şifre">
+      <button onclick="loginAdmin()">Giriş Yap</button>
+      <p id="loginError" style="color:red;"></p>
+    </div>
+
+    <div class="admin-panel" id="adminPanel" style="display:none;">
+      <h2>📦 Ürün Ekle</h2>
+      <input type="text" id="productName" placeholder="Ürün Adı">
+      <input type="text" id="productPrice" placeholder="Ürün Fiyatı">
+      <textarea id="productDesc" placeholder="Ürün Açıklaması"></textarea>
+      <button onclick="addProduct()">Ürünü Ekle</button>
+
+      <h2>🧾 Ürün Listesi</h2>
+      <ul id="productList"></ul>
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>
